@@ -9,7 +9,6 @@ source "$CURRENT_DIR/shared.sh"
 start_pipe_pane() {
 	local file=$(expand_tmux_format_path "${logging_full_filename}")
 	"$CURRENT_DIR/start_logging.sh" "${file}"
-	display_message "Started logging to ${logging_full_filename}"
 }
 
 stop_pipe_pane() {
@@ -42,13 +41,8 @@ is_logging() {
 
 # starts/stop logging
 toggle_pipe_pane() {
-	if is_logging; then
-		set_logging_variable "not logging"
-		stop_pipe_pane
-	else
-		set_logging_variable "logging"
-		start_pipe_pane
-	fi
+	set_logging_variable "logging"
+	start_pipe_pane
 }
 
 main() {
